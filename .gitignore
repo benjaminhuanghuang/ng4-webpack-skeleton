@@ -1,6 +1,8 @@
 dist/
 typings/
 
+. vscode/
+
 # Mac system file
 .DS_Store
 
