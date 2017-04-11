@@ -13,18 +13,24 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: /\.ts$/,
-            loader: 'awesome-typescript-loader'
-        }, {
-            test: /\.html$/,
-            loader: 'raw-loader'
-        }, {
-            test: /\.css$/,
-            loader: 'raw-loader'
-        }]
+                test: /\.component.ts$/,
+                loader: 'awesome-typescript-loader!angular2-template-loader'
+            }, {
+                test: /\.ts$/,
+                exclude: /\.component.ts$/,
+                loader: 'awesome-typescript-loader'
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw-loader'
+            }, {
+                test: /\.css$/,
+                loader: 'raw-loader'
+            }
+        ]
     },
     resolve: {
-        extensions: ['.js', '.ts', '.html','.css']
+        extensions: ['.js', '.ts', '.html', '.css']
     },
     plugins: [
         new HtmlWebpackPlugin({
