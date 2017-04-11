@@ -1,6 +1,6 @@
 const path = require('path');
 var webpack = require('webpack');
-var htmlWebpackPlugin = require("html-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -15,14 +15,25 @@ module.exports = {
         loaders: [{
             test: /\.ts$/,
             loader: 'awesome-typescript-loader'
+        }, {
+            test: /\.html$/,
+            loader: 'raw-loader'
+        }, {
+            test: /\.css$/,
+            loader: 'raw-loader'
         }]
     },
     resolve: {
-        extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts', '.html','.css']
     },
-    plugins:[
-         new htmlWebpackPlugin({
-            template:'./src/index.html'
-         })
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new webpack.DefinePlugin({
+            app: {
+                environment: JSON.stringify('production')
+            }
+        })
     ]
 };
